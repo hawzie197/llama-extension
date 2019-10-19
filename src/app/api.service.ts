@@ -16,7 +16,6 @@ export class ApiService {
     const getUrl = `https://join-llama.herokuapp.com/api/analyze/?url=${url}`;
     this.http.get(getUrl)
       .subscribe((payload: any) => {
-        alert(payload[0].privacy_policy_link);
         this.onAnalysisChanged$.next(payload);
       });
   }

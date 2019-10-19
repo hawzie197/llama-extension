@@ -29,37 +29,34 @@
               <span style="font-size: 12px; color: grey;">{{action.quote}}</span>
             </div>
             <div fxLayout="column" fxLayoutAlign="center center" fxFlex="10">
-              <mat-icon style="color: green;" *ngIf="action.confidence > 50">check</mat-icon>
-              <mat-icon style="color: orange;" *ngIf="action.confidence >= 20 && action.confidence <= 50">warning</mat-icon>
-              <mat-icon style="color: red;" *ngIf="action.confidence < 20">cancel</mat-icon>
+              <mat-icon style="color: green;" *ngIf="action.confidence > 40 && action.classification === '1'">check</mat-icon>
+              <mat-icon style="color: orange;" *ngIf="action.confidence < 40">warning</mat-icon>
+              <mat-icon style="color: red;" *ngIf="action.confidence > 40 && action.classification === '0'">cancel</mat-icon>
             </div>
           </mat-card>
         </div>
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer fxLayout="row" fxLayoutAlign="center center">
-      <div fxLayout="column" fxLayoutAlign="center center" style="padding: 10px;">
-        <span>Questions still?</span>
-        <div style="height: 2px; background-color: whitesmoke; width: 90%; margin: 8px;"></div>
-        <span fxLayout="row" fxLayoutAlign="center center">
-          Email: <a style="padding: 4px;" href="mailto: {{email}}">{{email}}</a> or view full policy <a style="padding: 4px;" [href]="policyLink">here</a>.
-        </span>
-      </div>
-    </footer>
-    <!-- / Footer -->
-
   </div>
   <!-- / Content -->
 
-  <div *ngIf="renderNotSignupPageWarning && !analysisLoading">
-    analyses are only run on sign-up pages.
-  </div>
+  <!-- Footer -->
+  <footer fxLayout="row" fxLayoutAlign="center center" id="footer" *ngIf="analysis && !analysisLoading">
+    <div fxLayout="column" fxLayoutAlign="center center" style="padding: 10px;">
+      <span>Questions still?</span>
+      <div style="height: 2px; background-color: whitesmoke; width: 90%; margin: 8px;"></div>
+      <span fxLayout="row" fxLayoutAlign="center center">
+          Email: <a style="padding: 4px;" href="mailto: {{email}}">{{email}}</a> or view full policy <a style="padding: 4px;" (click)="openPolicy()">here</a>.
+        </span>
+    </div>
+  </footer>
+  <!-- / Footer -->
 
-  <div *ngIf="!renderNotSignupPageWarning && analysisLoading">
-    <img src="assets/images/loader.gif" height="150" width="200" />
+  <div *ngIf="analysisLoading" style="width: 400px; height: 500px;" fxLayout="row" fxLayoutAlign="center center">
+    <mat-spinner color="primary"></mat-spinner>
   </div>
 
 </div>
+
 
