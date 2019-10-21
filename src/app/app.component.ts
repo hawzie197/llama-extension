@@ -22,41 +22,40 @@ export class AppComponent implements OnInit {
 
   constructor(private api: ApiService, private changeDetectorRef: ChangeDetectorRef) {
 
-    // On Load, bind url
-    // this.parseUrl();
-    //
-    //   this.actions = [
-    //     {
-    //       type: 'Access',
-    //       quote: 'some quote 1',
-    //       confidence: 10,
-    //       classification: '0'
-    //     },
-    //     {
-    //       type: 'Store',
-    //       quote: 'some quote 2',
-    //       confidence: 50,
-    //       classification: '1'
-    //     },
-    //     {
-    //       type: 'Sell',
-    //       quote: 'some quote 3',
-    //       confidence: 70,
-    //       classification: '1'
-    //     },
-    //     {
-    //       type: 'Disclose',
-    //       quote: 'some quote 3',
-    //       confidence: 70,
-    //       classification: '1'
-    //     },
-    //     {
-    //       type: 'Delete',
-    //       quote: 'some quote 3',
-    //       confidence: 70,
-    //       classification: '0'
-    //     }
-    //   ]
+      this.analysis =  {
+        actions: [
+          {
+            type: 'Access',
+            quote: 'some quote 1',
+            confidence: 10,
+            classification: '0'
+          },
+          {
+            type: 'Store',
+            quote: 'some quote 2',
+            confidence: 50,
+            classification: '1'
+          },
+          {
+            type: 'Sell',
+            quote: 'some quote 3',
+            confidence: 70,
+            classification: '1'
+          },
+          {
+            type: 'Disclose',
+            quote: 'some quote 3',
+            confidence: 70,
+            classification: '1'
+          },
+          {
+            type: 'Delete',
+            quote: 'some quote 3',
+            confidence: 70,
+            classification: '0'
+          }
+        ]
+      }
 
   }
 
@@ -68,8 +67,8 @@ export class AppComponent implements OnInit {
       this.api.onAnalysisChanged$
         .subscribe((analysis: any) => {
           this.api.analysisLoading$.emit(false);
-          this.analysis = analysis;
-          this.policyLink = analysis.privacy_policy_link;
+          // this.analysis = analysis;
+          // this.policyLink = analysis.privacy_policy_link;
          this.detectChanges();
         });
 
